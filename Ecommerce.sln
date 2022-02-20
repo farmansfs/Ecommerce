@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.HttpApi", "Ecommerce\Ecommerce.HttpApi.csproj", "{BAC6FBCE-F941-4E9E-9326-9405EAEEA899}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Web", "Ecommerce\Ecommerce.Web.csproj", "{BAC6FBCE-F941-4E9E-9326-9405EAEEA899}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Domain", "Ecommerce.Domain\Ecommerce.Domain.csproj", "{BC256F9C-864B-48DD-9EEC-F2E07635BDE6}"
 EndProject
