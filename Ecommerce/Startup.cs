@@ -1,5 +1,6 @@
 using Ecommerce.EFCore;
 using Ecommerce.Exceptions;
+using ECommerce.Application;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,12 +25,13 @@ namespace Ecommerce
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEfCoreModule();
-
+            services.AddApplicationModule();
             services.AddAuthentication()
                 .AddIdentityServerJwt();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddTransient(s => s.GetService<HttpContext>().User);
+            services.AddScoped(s =>
+                s.GetService<IHttpContextAccessor>().HttpContext.User);            
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -84,6 +86,7 @@ namespace Ecommerce
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+            app.SeedData();
         }
     }
 }

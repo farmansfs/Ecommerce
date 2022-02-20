@@ -13,5 +13,6 @@ namespace Ecommerce.Application.Shared.Services.Products
         Task<PagedResultDto<ProductDto>> GetProducts(GetProductsInput input);
 
         Task<List<CategoryDto>> GetCategories();
+        Task<ProductDto> GetProductById(Guid Id);
     }
 }

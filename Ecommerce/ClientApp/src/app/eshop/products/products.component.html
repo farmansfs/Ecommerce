@@ -1,0 +1,20 @@
+<div class="row row-cols-1 row-cols-md-2">
+  <div class="alert alert-warning" role="alert" *ngIf="!products.length">
+    <h4 class="alert-heading">Unfortunately, there is no any product in this category</h4>
+    <p></p>
+    <p class="mb-0">Please look at the other categories</p>
+  </div>
+  <div *ngFor="let item of products" class="col mb-4">
+    <div class="card">
+      <img [src]="'https://picsum.photos/200/300?param='+item.id" class="card-img-top" [alt]="item.name" style="height: 200px;">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.description}}</p>
+      </div>
+      <div class="card-footer">
+        {{item.price}}$ <a class="btn btn-primary float-right" [routerLink]="['/products/details']"
+          [queryParams]="{id:item.id}" role="button">Details</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="list-group">
+  <a [routerLink]="['/products']" [queryParams]="{categoryId:''}" routerLinkActive="active" class="list-group-item list-group-item-action">All</a>
+  <a *ngFor="let item of categories" [routerLink]="['/products']" [queryParams]="{categoryId:item.id}" routerLinkActive="active" class="list-group-item list-group-item-action" aria-current="true">
+    {{item.name}}
+  </a>
+</div>

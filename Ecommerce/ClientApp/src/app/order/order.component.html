@@ -1,0 +1,10 @@
+<div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-default" routerLinkActive="btn-primary" [routerLink]="['/order/myorders']">My Orders</button>
+    <button type="button" class="btn btn-default" routerLinkActive="btn-primary" [routerLink]="['/order/checkout']">Checkout</button>
+  </div>
+  <hr>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

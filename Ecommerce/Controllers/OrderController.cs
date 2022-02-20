@@ -7,10 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Ecommerce.Application.Shared.Shared.Endpoints.ApplicationEndpoints;
 
 namespace Ecommerce.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class OrderController : BaseController
@@ -22,19 +22,20 @@ namespace Ecommerce.Controllers
             this._orderService = orderService;
         }
 
-        [HttpGet("getOrders")]
+        [HttpGet(Orders.GetOrders)]
         public async Task<ActionResult> GetOrders()
         {
             return Ok(await _orderService.GetOrders());
         }
 
-        [HttpGet("checkIfProductInStock")]
+        [HttpGet(Orders.CheckIfProductInStock)]
+        [AllowAnonymous]
         public async Task<ActionResult> CheckIfProductInStock([FromQuery] CheckIfProductInStock input)
         {
             return Ok(await _orderService.CheckIfProductInStock(input));
         }
 
-        [HttpPost("createOrder")]
+        [HttpPost(Orders.CreateOrder)]
         public async Task<ActionResult> CreateOrder([FromBody] OrderDto input)
         {
             return Ok(await _orderService.CreateOrder(input));

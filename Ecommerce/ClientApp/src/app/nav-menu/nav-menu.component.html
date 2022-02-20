@@ -28,14 +28,29 @@
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
+            <a class="nav-link text-dark" [routerLink]="['/products']" [queryParams]="{categoryId:''}"
+              >Products</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
+          <li class="nav-item">
+            <div class="btn-group" dropdown>
+              <button id="button-animated" dropdownToggle type="button" class="btn btn-success dropdown-toggle"
+                      aria-controls="dropdown-animated">
+                      Cart: {{cartCount$ | async}} item <span class="caret"></span>
+              </button>
+              <div id="dropdown-animated" *dropdownMenu class="dropdown-menu p-2" style="width: 20rem;"
+                  role="menu" aria-labelledby="button-animated">
+                  <ul class="list-group">
+                    <li *ngFor="let item of cartItems$ | async" class="list-group-item d-flex justify-content-between align-items-center">
+                      {{item.product.name}}
+                      <span class="badge badge-primary badge-pill">x{{item.amount}}</span>
+                    </li>
+                  </ul>
+                  <div>
+                    Card total: {{cartTotal$ | async}} $ <button class="btn btn-primary float-right" [routerLink]="['/order/checkout']">Checkout</button>
+                  </div>
+              </div>
+            </div>
           </li>
         </ul>
         <app-login-menu></app-login-menu>

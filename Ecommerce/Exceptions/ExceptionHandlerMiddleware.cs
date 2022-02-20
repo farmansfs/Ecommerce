@@ -27,27 +27,27 @@ namespace Ecommerce.Exceptions
             {
                 var response = context.Response;
                 response.ContentType = "application/json";
+                response.StatusCode = 200;
                 var result = new ErrorResponse();
                 switch (error)
                 {
                     case FriendlyException e:
                         // custom application error
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        result.StatusCode = (int)HttpStatusCode.BadRequest;
                         result.Message = e.Message;
                         result.Details = e.Details;
                         break;
                     case KeyNotFoundException e:
                         // not found error
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
+                        result.StatusCode = (int)HttpStatusCode.NotFound;
                         result.Message = e.Message;
                         break;
                     default:
                         // unhandled error
-                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        result.StatusCode = (int)HttpStatusCode.InternalServerError;
                         result.Message = "Internal Server Error";
                         break;
                 }
-                result.StatusCode = response.StatusCode;
                 await response.WriteAsJsonAsync(result);
             }
         }

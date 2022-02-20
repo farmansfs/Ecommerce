@@ -39,6 +39,7 @@ namespace ECommerce.Application.Services.Products
             {
                 Id = x.Id,
                 Description = x.Description,
+                CategoryId = x.CategoryId,
                 Category = new CategoryDto
                 {
                     Id = x.CategoryId,
@@ -59,6 +60,24 @@ namespace ECommerce.Application.Services.Products
             var totalCount = await _productRepository.CountAsync(query);
             var items = await _productRepository.ToListAsync(query);
             return new PagedResultDto<ProductDto>(items, totalCount);
+        }
+
+        public async Task<ProductDto> GetProductById(Guid Id)
+        {
+            var query = _productRepository.GetAll().Where(x=>x.Id==Id).Select(x => new ProductDto
+            {
+                Id = x.Id,
+                Description = x.Description,
+                Category = new CategoryDto
+                {
+                    Id = x.CategoryId,
+                    Name = x.Category.Name
+                },
+                Name = x.Name,
+                Price = x.Price
+            });
+
+            return await _productRepository.FirstOrDefaultAsync(query);
         }
     }
 }

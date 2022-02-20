@@ -16,7 +16,8 @@ namespace Ecommerce.Controllers
             var result = new SuccessResponse<T>
             {
                 StatusCode = (int)HttpStatusCode.OK,
-                Message = HttpStatusCode.OK.ToString()
+                Message = HttpStatusCode.OK.ToString(),
+                Result = value
             };
             return base.Ok(result);
         }

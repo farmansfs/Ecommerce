@@ -27,7 +27,7 @@ namespace Ecommerce.EFCore
         {
             foreach (var item in ChangeTracker.Entries())
             {
-                if(item.State == EntityState.Deleted && item.Entity is Entity)
+                if (item.State == EntityState.Deleted && item.Entity is Entity)
                 {
                     (item.Entity as Entity).IsDeleted = true;
                     item.State = EntityState.Modified;
@@ -42,8 +42,8 @@ namespace Ecommerce.EFCore
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Category>();
             builder.Entity<Product>().HasQueryFilter(x => !x.IsDeleted);
-            builder.Entity<Category>().HasQueryFilter(x => !x.IsDeleted);
             builder.Entity<Order>().HasQueryFilter(x => !x.IsDeleted);
             builder.Entity<OrderLine>().HasQueryFilter(x => !x.IsDeleted);
             base.OnModelCreating(builder);

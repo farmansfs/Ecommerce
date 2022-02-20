@@ -1,0 +1,32 @@
+<div>
+  <h2>Checkout</h2>
+  <ul class="list-unstyled">
+    <li *ngFor="let item of currentCart.orderLines" class="media my-2">
+      <img class="mr-3" [src]="'https://picsum.photos/200/300?param='+item.product.id" alt="Generic placeholder image">
+      <div class="media-body">
+        <h5 class="mt-0 mb-1">{{item.product.name}}</h5>
+        {{item.product.description}}
+        <hr>
+        Price: {{item.price}}$
+        <br>
+        Qty: {{item.amount}}
+        <br>
+        Total: {{item.price*item.amount}}$
+        <br>
+        <button class="btn btn-danger" (click)="remove(item.productId)">Remove</button>
+      </div>
+    </li>
+  </ul>
+  <div>
+    <form *ngIf="currentCart && currentCart.orderLines.length">
+      <div class="form-row">
+        <div class="col-10">
+          <input type="text" name="adress" [(ngModel)]="adress" placeholder="Adress">
+        </div>
+        <div class="col">
+          <button type="button" (click)="order()">Place order</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

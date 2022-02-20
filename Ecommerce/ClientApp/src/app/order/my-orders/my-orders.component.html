@@ -1,0 +1,21 @@
+<div>
+  <h2>My Orders</h2>
+  <div *ngIf="orders">
+    <div *ngIf="!orders.length" class="alert alert-success" role="alert">
+      <h4 class="alert-heading">You don't have any previous order</h4>
+      <p></p>
+      <p class="mb-0">Add some products to your cart and checkout!</p>
+    </div>
+    <div *ngFor="let order of orders" class="card" style="width: 18rem;">
+      <div class="card-header">
+       {{order.creationTime | date}} | Adress: {{order.adresss}}
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of order.orderLines">
+          {{item.product.name}}
+          <span class="badge badge-primary badge-pill">x{{item.amount}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

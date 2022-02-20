@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Application.Shared.Shared
 {
-    public class PagedResultDto<T>:IEnumerable<T>
+    public class PagedResultDto<T>
     {
         public PagedResultDto(List<T> items, int totalCount)
         {
@@ -21,15 +21,5 @@ namespace Ecommerce.Application.Shared.Shared
         }
         public List<T> Items { get; set; }
         public int TotalCount { get; set; }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            return Items.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return Items.GetEnumerator();
-        }
     }
 }
